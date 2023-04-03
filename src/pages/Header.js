@@ -1,66 +1,80 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useState } from 'react'
+import { Dialog } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
-const steps = [
-  { id: "Step 1", name: "Set Nickname", href: "/" },
-  {
-    id: "Step 2",
-    name: "Choose Game",
-    href: "/choose_game",
-  },
- 
-  { id: "Step 3", name: "Game", href: "/game" },
-];
+const navigation = [
+  { name: 'Change Nickname', href: '/' },
+  { name: 'Choose Game', href: '/choose_game' },
+
+]
 
 function Header() {
-  let location = useLocation();
-  const path = location.pathname;
-  const currentIdx = steps.findIndex((step) => step.href === path);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div>
-      <nav aria-label="Progress">
-        <ol className="mb-3 md:flex md:space-y-0 md:space-x-2">
-          {steps.map((step, idx) => (
-            <li key={step.name} className="md:flex-1">
-              {idx < currentIdx ? (
-                <a
-                  href={step.href}
-                  className="group flex flex-col border-l-4 bg-sky-50 border-sky-600    md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0"
-                >
-                  <span className="text-sm font-medium text-gray-500">
-                    {step.id}
-                  </span>
-                  <span className="text-sm mb-5 font-medium">{step.name}</span>
-                </a>
-              ) : idx === currentIdx ? (
-                <a
-                  href={step.href}
-                  className="flex flex-col border-l-4 bg-sky-200 border-sky-600 py-2 pl-4 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0"
-                  aria-current="step"
-                >
-                  <span className="text-sm font-medium text-sky-600">
-                    {step.id}
-                  </span>
-                  <span className="text-sm mb-5 font-medium">{step.name}</span>
-                </a>
-              ) : (
-                <a
-                  href={step.href}
-                  className="group flex flex-col border-l-4 bg-gray-100 border-gray-200 py-2 pl-4 hover:border-gray-300 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0"
-                >
-                  <span className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
-                    {step.id}
-                  </span>
-                  <span className="text-sm mb-5 font-medium">{step.name}</span>
-                </a>
-              )}
-            </li>
+    <header className="bg-gray-900 mb-10">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+        <div className="flex lg:flex-1">
+          <h1 className="text-2xl text-white">Welcome to TASK-7 GAMES</h1>
+        </div>
+        <div className="flex lg:hidden">
+          <button
+            type="button"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <span className="sr-only">Open main menu</span>
+            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+          </button>
+        </div>
+        <div className="hidden lg:flex lg:gap-x-12">
+          {navigation.map((item) => (
+            <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-white">
+              {item.name}
+            </a>
           ))}
-        </ol>
+        </div>
+      
       </nav>
-    </div>
-  );
+      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+        <div className="fixed inset-0 z-10" />
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+          <div className="flex items-center justify-between">
+            <a href="#" className="">
+              
+            </a>
+            <button
+              type="button"
+              className="-m-2.5 rounded-md p-2.5 text-gray-400"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span className="sr-only">Close menu</span>
+              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+          <div className="mt-6 flow-root">
+            <div className="-my-6 divide-y divide-gray-500/25">
+              <div className="space-y-2 py-6">
+                {navigation.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+              <div className="py-6">
+               
+              </div>
+            </div>
+          </div>
+        </Dialog.Panel>
+      </Dialog>
+    </header>
+  )
 }
 
 export default Header;

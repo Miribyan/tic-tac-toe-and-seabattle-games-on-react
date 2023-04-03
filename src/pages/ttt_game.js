@@ -5,6 +5,7 @@ const BOARD_SIZE = 3;
 const FULL_BOARD_SIZE = BOARD_SIZE * BOARD_SIZE;
 const gameName = "tic-tac";
 
+
 const victory = [
   [0, 1, 2],
   [3, 4, 5],
@@ -167,9 +168,10 @@ function Ttt_game() {
 
   return (
     <div className={"app" + (isMyTurn() ? " -active" : "")}>
-      <h1>Logged in as {userName}.</h1>
+      <h1>Your Game id: {gameId}</h1>
+      <h1 className="text-2xl ">Your name: {userName}</h1>
       {!currentGameFinal ? (
-        <>
+        <div className="mb-10 ">
           {
             <h1>
               {enemyName
@@ -179,11 +181,11 @@ function Ttt_game() {
           }
 
           {mySign !== currentTurn ? (
-            <h2>Waiting for turn of {currentTurn}</h2>
+            <h2 className="text-xl text-red-500 border-b-2 border-red-500">Waiting for turn of {currentTurn}...</h2>
           ) : (
-            <h2>Your turn</h2>
+            <h2 className="text-xl text-green-500 border-b-2 border-green-500">Your turn</h2>
           )}
-        </>
+        </div>
       ) : currentGameFinal === "draw" ? (
         " It is a draw"
       ) : currentGameFinal === "currentWin" ? (

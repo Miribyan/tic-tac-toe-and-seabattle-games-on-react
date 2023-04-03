@@ -203,9 +203,12 @@ function Game() {
                       <button
                         type="button"
                         className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                        onClick={() => setOpen(false)}
+                        onClick={() => {
+                          setOpen(false)
+                          navigate("/choose_game")
+                        }}
                       >
-                        Go back to GAMES LIST
+                        Go back to Choose Game page
                       </button>
                     </div>
                   </Dialog.Panel>
@@ -218,7 +221,7 @@ function Game() {
 
       {!shipsReady && (
         <div>
-          <p>Your Game id {gameId}</p>
+          <h1>Your Game id:  {gameId}</h1>
           <SetShipBoardComponent
             board={myBoard}
             setBoard={setMyBoard}
@@ -230,10 +233,10 @@ function Game() {
 
       {shipsReady && (
         <div>
-          <h1 className="my-10 text-3xl">Sea Battle</h1>
+          <h1 className="mb-10 text-3xl">Sea Battle</h1>
           <div className="flex w-full justify-around">
             <div className="mx-5">
-              <p className="mb-10 bg-sky-500 py-1 px-2 text-s font-semibold text-white shadow-sm">
+              <p className="mb-10 bg-gray-700 py-1 px-2 text-s font-semibold text-white shadow-sm">
                 {userName}
               </p>
               <BoardComponent
@@ -246,7 +249,7 @@ function Game() {
               />
             </div>
             <div className="mx-5">
-              <p className="mb-10 bg-red-500 py-1 px-2 text-s font-semibold text-white shadow-sm">
+              <p className="mb-10 bg-red-600 py-1 px-2 text-s font-semibold text-white shadow-sm">
                 {enemyName}
               </p>
               <BoardComponent

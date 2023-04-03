@@ -72,8 +72,7 @@ const SetShipBoardComponent = ({ board, setBoard, setShipsReady }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="my-10 rounded-md bg-sky-500 py-1 px-2 text-s font-semibold text-white shadow-sm">
-        <p>Welcome to the Sea Battle</p>
+      <div className="mb-10  py-1 px-2 text-s border-b-2 border-black">
         <p>Prepare your ships</p>
         <p>Place {steps[currentStep].name} ship</p>
         <p>Left to place {currentCount}</p>

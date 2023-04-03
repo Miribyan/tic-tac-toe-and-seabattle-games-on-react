@@ -6,53 +6,49 @@
   justify-content: space-around;
 }
 .board {
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
   box-sizing: content-box;
+  border: 1px solid rgb(0, 0, 0);
+  box-shadow: 0px 4px 23px 10px rgba(172, 172, 172, 0.2)
 }
 
 .cell {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
-  height: 30px;
-  border: 1px solid rgb(146, 146, 249);
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgb(0, 0, 0);
   box-sizing: border-box;
   line-height: 100%;
 }
 
 .red {
-  color: red;
-  background-color: #ccc;
+  color: rgb(0, 0, 0);
+  background-color: #d10000;
+  border: 1px solid rgb(150, 150, 150);
+  box-shadow: 0px 4px 23px 10px rgba(225, 19, 19, 0.2)
 }
 
 .blue {
-  color: blue;
+  color: rgb(0, 0, 0);
   font-size: 30px;
   vertical-align: middle;
   font-weight: bolder;
 }
 
 .grey {
-  background-color: #ccc;
+  background-color: #000000;
+  border: 1px solid rgb(150, 150, 150);
+  box-shadow: 0px 4px 23px 10px rgba(6, 16, 66, 0.2)
+
 }
 
-/* .board_ttt {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 10px;
-  margin: 50px auto;
-  width: 300px;
-  height: 300px;
-  background-color: #ddd;
-  border-radius: 10px;
-  padding: 10px;
-} */
+
 
 .app {
   display: flex;
@@ -62,14 +58,43 @@
 }
 
 .board_ttt {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 10px;
+
+  
+  border: 10px solid #000;
+  background-color: #fff;
+  box-shadow: 0 0 10px #000;
+  position: relative;
+  overflow: hidden;
 }
+
+.border_ttt::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom, #000, #fff);
+}
+
+.border_ttt::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: linear-gradient(to right, #000 50%, #fff 50%);
+}
+
+.border_ttt:hover::before,
+.border_ttt:hover::after {
+  transform: rotate(45deg);
+}
+
+
 
 .app.-active .board_ttt {
   animation: pulse 1s linear 0s infinite alternate;
@@ -95,7 +120,7 @@
   font-size: 60px;
   width: 100px;
   height: 100px;
-  border: 2px solid black;
+  border: 1px solid rgb(97, 97, 97);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
