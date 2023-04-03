@@ -8,7 +8,7 @@ function classNames(...classes) {
 const settings = [
   {
     name: "Tic Tac Toe",
-    route: "/game/",
+    route: "/tic-tac/",
   },
   {
     name: "Sea Battle",
@@ -26,7 +26,9 @@ function Choose_game() {
     setGameId(Date.now());
   }, []);
   const onJoin = () => {
-    if (inputValue) {
+    if (inputValue[1] === "t") {
+      navigate("/tic-tac/" + inputValue);
+    } else {
       navigate("/game/" + inputValue);
     }
   };
@@ -40,7 +42,6 @@ function Choose_game() {
         return "sb";
       }
     };
-    console.log(prefix());
     navigate(route + prefix() + gameId);
   };
   return (
