@@ -17,7 +17,7 @@ const BoardComponent = ({ board, setBoard, isMyBoard, canShoot, shoot }) => {
   }
 
   if (canShoot) {
-    boardClasses.push("outline outline-offset-2 outline-green-500");
+    boardClasses.push("border border-2 border-green-700");
   }
 
   return (
